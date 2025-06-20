@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Story 💌</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      background: #ffece5;
+      color: #222;
+      overflow-x: hidden;
+    }
+    .section {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 20px;
+      gap: 40px;
+      min-height: 100vh;
+      position: relative;
+    }
+    .section:nth-child(even) {
+      flex-direction: row-reverse;
+    }
+    .section-content {
+      flex: 1 1 300px;
+      max-width: 500px;
+      text-align: left;
+    }
+    .section-content h2 {
+      font-family: "Playfair Display", serif;
+      font-size: 32px;
+      margin-bottom: 15px;
+      color: #2c2c2c;
+    }
+    .section-content p {
+      font-size: 16px;
+      line-height: 1.6;
+      white-space: pre-line;
+    }
+    .section-images {
+      flex: 1;
+      max-width: 350px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    .section-images img {
+      width: 100%;
+      border-radius: 12px;
+      object-fit: cover;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .section-images img:hover { transform: scale(1.02); }
+
+    .flower {
+      position: absolute;
+      width: 300px;
+      max-width: 35vw;
+      opacity: 0;
+      transition: opacity 1s ease, transform 1s ease;
+    }
+    .flower.visible { opacity: 1; transform: translateY(0); }
+    .flower.bottom-left { bottom: 20px; left: 20px; transform: translateY(40px); }
+    .flower.top-right { top: 20px; right: 20px; transform: translateY(-40px); }
+
+    .modal {
+      display: none;
+      position: fixed; top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background: rgba(0,0,0,0.8);
+      align-items: center; justify-content: center;
+      z-index: 9999;
+    }
+    .modal.active { display: flex; }
+    .modal img {
+      max-width: 90%; max-height: 90vh;
+      border-radius: 10px;
+    }
+
+    #cursor-heart {
+      position: fixed; top: 0; left: 0;
+      pointer-events: none;
+      font-size: 14px; z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: transform 0.05s ease;
+    }
+    .heart-burst {
+      position: fixed;
+      font-size: 16px; color: #ff4d88;
+      pointer-events: none;
+      animation: burst 0.8s ease-out forwards;
+      z-index: 9999;
+    }
+    @keyframes burst {
+      0% { opacity:1; transform: translate(0,0) scale(1); }
+      100% { opacity:0; transform: translate(var(--x),var(--y)) scale(0.5); }
+    }
+    @media screen and (max-width: 768px) {
+      .section { flex-direction: column !important; text-align: center; }
+      .section-content { text-align: center; }
+      .section-images img { width: 90%; margin: auto; }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="cursor-heart">❤️</div>
+  <div class="modal" id="modal"><img id="modalImg" src="" alt="Full Image"></div>
+
+  <!-- Section 1 -->
+  <section class="section">
+    <div class="section-images">
+      <img src="./assets/img1.jpg" alt="First moment" class="preview">
+    </div>
+    <div class="section-content">
+      <h2>How It All Started 🕊️</h2>
+      <p>
+Pata nahi ye sab kab shuru hua. Starting me sab kuchh normal tha — tum sirf ek achhi dost thi. Par tumhare sath kuchh to alag tha, jo ham hamesha feel karte the. Tum mein kuchh to baat thi jo hamko achha lagta tha — tumhara hamesha haste rehna, tumhara vibe, tumhara career ko leke seriousness, aur jo tum apne aas paas ek aisa comfort create karti ho jo har kisi ko achha feel karata hai. The way you think, the way you treat everyone around you, how you handle any situation, the clarity you have — there are so many things I like about you.
+
+Dheere dheere hamko realise hua ki tumhare sath ham kaafi alag feel karte hain… ham usually naye logo se ghulne mein time lete hain, par tumhare sath bahut jaldi comfortable ho gaye. Tumhara vibe bahut achha lagta tha, tumse saari baatein share kar paate the. Hamko tumhare sath time spend karna bahut achha lagne laga.
+
+Shayad isiliye, jab Aditya hamko tumhare naam se chidhata tha, tab pehle gussa aata tha. Par jaise jaise tumko jaana… I secretly started liking it. Tab samajh aaya… I was starting to like you.
+
+Lekin ham apni dosti ke beech kabhi pyar‑vyar nahi lana chahte the. Kabhi socha hi nahi tha uss tarah se. Isiliye, maine uss feeling ko ignore karna start kar diya — after all, It was just liking.
+      </p>
+    </div>
+    <img src="./assets/Flower1.svg" class="flower bottom-left" alt="">
+  </section>
+
+  <!-- Section 2 -->
+  <section class="section">
+    <div class="section-images">
+      <img src="./assets/img12.jpg" alt="Falling in love" class="preview">
+      <img src="./assets/img13.jpg" alt="Falling in love" class="preview">
+    </div>
+    <div class="section-content">
+      <h2>When I Knew 🌸</h2>
+      <p>
+Aisa koi ek moment nahi tha… jab tum hamko achhi lagi. Jo ki aise likh ke batana possible nahi hai… par fir bhi ham koshish karte hain.
+
+Jab ham tumhare birthday pe gaye the, pata nahi us din kya tha… par usi din se tum aur bhi achhi lagne lagi. Kaise koi itna perfect ho sakta hai? Tum club me enjoy bhi karti ho, shots & hookah bhi leti ho, vibe bhi karti ho… fir ghar ka saara kaam bhi manage karti ho. Tum sab kuch itni easily handle karti ho — hamko samajh hi nahi aata kaise! Ham genuinely impressed the. Jab night stay pe tumhare flat gaye the, tum thodi si high thi aur kitni cute lag rahi thi. Aur ussi din jab ham dono ek sath kitchen me khana bana rahe the — kuchh special sa tha us moment mein.
+
+Tum har situation mein perfect lagti ho. Tab hamko samajh aa gaya ki haan… tum hamko achhi lagne lagi ho. Par dosti bigadne ka darr itna tha ki ham kabhi is feeling pe zyada soche hi nahi. Tumse thoda door rehne ki koshish kiye, taaki zyada attach na ho jaye.
+
+Lekin trip pe tumhare sath zyada time spend karne ka mauka mila, aur jitna zyada tumko jaane, utna hi zyada tumhare liye feelings badhte gaya. Trip ke baad, kuch alag hi feel hua. Tumhare bina sab thoda ajeeb lagne laga. Ham koshish karte rahe sab kuch normal rakhne ka, par ho nahi paaya. Tumse baatein badhti gayi, attachment aur bhi strong hota gaya. Tumse related har chhoti baat achhi lagne lagi. Kuchh alag sa hi feel hone laga. Pehli baar aisa feel ho raha tha… kabhi kisi ke liye aisa nahi hua tha.
+
+Padhaai mein bhi mann nahi lagta tha. Itna distracted kabhi nahi feel kiya tha. Tab ham koshish kiye ye sab change karne ka, par ho nahi paaya. Trust me… I tried hard not to fall for you… but I failed every time.
+
+Fir tumse baat karte karte laga ki shayad… tum bhi thodi interested ho. Tab mann hua sab keh doon. But exams aa raha tha, aur hamko laga us waqt bolne se tum bhi distract ho jaogi. Isiliye wait kiya.
+
+Aur ab, jab exams khatam ho gaye hain…this feels like the perfect time to finally tell you everything.
+      </p>
+    </div>
+    <img src="./assets/Flower2.svg" class="flower top-right" alt="">
+  </section>
+
+  <!-- Section 3 -->
+  <section class="section">
+    <div class="section-images">
+      <img src="./assets/img4.jpg" alt="Now and always" class="preview">
+    </div>
+    <div class="section-content">
+      <h2>How I Feel Now ❤️</h2>
+      <p>
+Ab sab kuchh bahut alag sa lagta hai. Tumhare baare mein baat karna, tumhare baare mein sochna, sab kuchh ek habit jaisa ban gaya hai. Subah uthte hi tumhara khayal aata hai, aur sone se pehle bhi tumhare baare mein sochte hain. Tumse baat karke ek alag hi feeling hoti hai. Tumse milne ka sunke hi itna excitement feel hota hai ki words mein explain nahi kar sakta.
+
+Kabhi kabhi itna restlessness sa lagta tha ki mann karta tha sab kuchh usi waqt keh doon. Bahut mushkil tha ye sab control karna, par fir bhi ab tak wait kar raha tha. Tumhara sirf paas aana hi mera heartbeat bada deta hai. Ye sab thoda cringe lage shayad or pahle ye sab hamko bhi bahut cringe lagta tha… par sach bole toh, ye sab feelings pehli baar experience kar rahe hain.
+
+Ab toh lagta hai ye sirf liking nahi rahi… I think I’m getting obsessed with you, Adity. Tumhara har andaaz, tumhari har baat, sab kuchh achha lagne laga hai. Tum bahut hi zyada Achii lagne lagi ho.
+
+Kabhi soche nahi the ki ham kissi ke liye aise kuchh likhenge… par tumhare liye sab naturally aate gaya.
+
+Hamko nahi pata tum mere liye kya feel karti ho, aur hamko nahi lagta ham tumko deserve bhi karte hai. But I promise, I’ll become the one you truly deserve.
+
+Ab ye sirf attraction or liking nahi rah gya hai. hamko nahi pata pyar ka definition kya hota hai, Par Shayad isko hi pyar kehte hain.
+      </p>
+    </div>
+    <img src="./assets/Flower3.svg" class="flower bottom-left" alt="">
+  </section>
+
+  <!-- Proposal -->
+  <section class="section" style="padding:0; margin:0;" id="proposalFrame">
+    <iframe src="proposal.html" style="width:100%; height:100vh; border:none; display:block;" scrolling="no"></iframe>
+  </section>
+
+  <script>
+    // Flower scroll animation
+    window.addEventListener("scroll", () => {
+      document.querySelectorAll(".flower").forEach(f => {
+        if (f.getBoundingClientRect().top < innerHeight - 100) {
+          f.classList.add("visible");
+        }
+      });
+    });
+
+    // Fullscreen modal viewer
+    const modal = document.getElementById("modal");
+    const modalImg = document.getElementById("modalImg");
+    document.querySelectorAll(".preview").forEach(img => {
+      img.addEventListener("click", () => {
+        modalImg.src = img.src;
+        modal.classList.add("active");
+      });
+    });
+    modal.addEventListener("click", () => modal.classList.remove("active"));
+
+    // Heart cursor + burst
+    const heart = document.getElementById("cursor-heart");
+    document.addEventListener("mousemove", e => {
+      heart.style.top = e.clientY + "px";
+      heart.style.left = e.clientX + "px";
+    });
+    function createHeartBurst(x, y) {
+      for (let i = 0; i < 6; i++) {
+        const hb = document.createElement("div");
+        hb.className = "heart-burst";
+        hb.innerText = "❤️";
+        const angle = Math.random() * Math.PI * 2;
+        const r = 40 + Math.random() * 20;
+        hb.style.setProperty("--x", Math.cos(angle) * r + "px");
+        hb.style.setProperty("--y", Math.sin(angle) * r + "px");
+        hb.style.left = x + "px";
+        hb.style.top = y + "px";
+        document.body.appendChild(hb);
+        setTimeout(() => hb.remove(), 800);
+      }
+    }
+    document.addEventListener("click", e => createHeartBurst(e.clientX, e.clientY));
+    document.addEventListener("touchstart", e => createHeartBurst(e.touches[0].clientX, e.touches[0].clientY));
+  </script>
+</body>
+</html>

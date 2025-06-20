@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>For You</title>
+  <style>
+    @import url(https://fonts.googleapis.com/css?family=Pacifico);
+
+    body {
+      background: url(https://subtlepatterns.com/patterns/noise_lines.png);
+      font-family: "Pacifico", cursive;
+      overflow: hidden;
+      color: #fff;
+    }
+
+    .bgoverlay {
+      background: rgba(103, 58, 183, 0.7);
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+    }
+
+    .container {
+      position: relative;
+      margin: 120px auto 0 auto;
+      width: 320px;
+    }
+
+    .ico {
+      display: block;
+      width: 320px;
+      height: 320px;
+    }
+
+    .open .ico {
+      animation: open 4s;
+      transform: scale(10);
+    }
+
+    .ico .title {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-left: -95px;
+      margin-top: -73px;
+      z-index: 4;
+      font-size: 50px;
+      font-family: "Pacifico", cursive;
+      color: #fff;
+      cursor: pointer;
+      text-shadow: 2px 4px 3px rgba(0, 0, 0, 0.3);
+    }
+
+    .open .ico .title {
+      opacity: 0;
+      transition: all 0.3s ease;
+      top: -100px;
+    }
+
+    .ico:before,
+    .ico:after,
+    .ico2:before,
+    .ico2:after {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: block;
+      font-size: 20em;
+      color: #ff4081;
+      content: "\f004";
+      font-family: FontAwesome;
+    }
+
+    .ico2:before, .ico2:after {
+      color: #e91e63;
+    }
+
+    .ico:before { z-index: 3; }
+    .ico:after { animation: explode 4s infinite; }
+    .ico2:before { animation: explodeSmall 3s infinite; }
+    .ico2:after { animation: explodeSmall 2s infinite; }
+
+    .endtext {
+      opacity: 0;
+      position: absolute;
+      top: -100px;
+      width: 100%;
+    }
+
+    .open .endtext {
+      top: 0;
+      opacity: 1;
+      animation: show 5s;
+    }
+
+    .endtext h1, .endtext h2 {
+      text-align: center;
+      font-weight: normal;
+      text-shadow: 2px 4px 3px rgba(0, 0, 0, 0.3);
+    }
+
+    .endtext h1 { font-size: 50px; }
+    .endtext h2 { font-size: 30px; }
+
+    .response-buttons {
+      margin-top: 40px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .response-buttons button {
+      padding: 15px 30px;
+      font-size: 18px;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: 0.3s ease-in-out;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      font-family: "Poppins", sans-serif;
+    }
+
+    .yes {
+      background: linear-gradient(135deg, #ff4081, #f50057);
+      color: white;
+    }
+
+    .no {
+      background: #eeeeee;
+      color: #f44336;
+      border: 2px solid #f44336;
+      transition: all 0.4s ease-in-out;
+      z-index: 9999;
+    }
+
+    .yes:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px #ff80ab;
+    }
+
+    .no:hover {
+      background: #f44336;
+      color: white;
+      transform: scale(1.05);
+    }
+
+    @keyframes explode {
+      from { transform: scale(1); opacity: 1; }
+      to { transform: scale(1.6); opacity: 0; }
+    }
+
+    @keyframes explodeSmall {
+      from { transform: scale(1); opacity: 1; }
+      to { transform: scale(1.2); opacity: 0; }
+    }
+
+    @keyframes open {
+      from { transform: scale(1); }
+      to { transform: scale(10); }
+    }
+
+    @keyframes show {
+      from { opacity: 0; top: -100px; }
+      to { opacity: 1; top: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Dependencies -->
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+
+  <!-- Content -->
+  <div class="bgoverlay">
+    <div class="container">
+      <span class="ico">
+        <span class="ico2"></span>
+        <span class="title">Click Me</span>
+      </span>
+
+      <div class="endtext">
+        <h1>I Love You Adity❤️</h1>
+        <h2>Will you be mine forever?</h2>
+        <div class="response-buttons">
+          <button class="yes">Yes 💖</button>
+          <button class="no">No 😔</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  $(document).ready(function () {
+    $('.title').click(function () {
+      $('.container').addClass('open');
+    });
+
+    $('.close').click(function () {
+      $('.container').removeClass('open');
+    });
+
+    const scriptURL = "https://script.google.com/macros/s/AKfycbyzSF1kHmUmWJmF5NU2MEUNo9jU_8dmZ76DBEcBwyYijlaMBxKRvW-BvavZKSyq_sxBWQ/exec"; // Replace with your actual Web App URL
+
+    // YES button
+    $('.yes').click(function () {
+      const formData = new FormData();
+      formData.append("response", "yes");
+      formData.append("timestamp", new Date().toISOString());
+
+      fetch(scriptURL, {
+        method: "POST",
+        body: formData
+      }).then(() => {
+        setTimeout(() => {
+          window.location.href = "yes.html"; // Redirect after tracking
+        }, 10);
+      });
+    });
+
+    // NO button
+    $('.no').click(function () {
+      const formData = new FormData();
+      formData.append("response", "no");
+      formData.append("timestamp", new Date().toISOString());
+
+      fetch(scriptURL, {
+        method: "POST",
+        body: formData
+      });
+    });
+
+    // Fun behavior for NO button
+    const noButton = document.querySelector('.no');
+    const messages = ["What?", "Why?", "I thought you loved me 😢", "Don’t do this 🥺", "Okay... fine 😔"];
+    let noClickCount = 0;
+
+    noButton.addEventListener('click', () => {
+      if (noClickCount < messages.length) {
+        noButton.innerText = messages[noClickCount];
+        noButton.style.background = "#fff3f3";
+        noButton.style.color = "#e91e63";
+        noButton.style.border = "2px solid #e91e63";
+        noClickCount++;
+      } else {
+        noButton.disabled = true;
+        noButton.innerText = "😞";
+        noButton.style.opacity = "0.6";
+      }
+    });
+  });
+  </script>
+</body>
+</html>

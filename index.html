@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>For You 💖</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      background-color: #F2E5D9;
+      font-family: 'Poppins', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .container {
+      text-align: center;
+      padding: 20px;
+    }
+
+    .message {
+      font-size: 32px;
+      font-weight: 300;
+      opacity: 0;
+      margin-bottom: 30px;
+      transition: opacity 1s ease-in-out;
+    }
+
+    .message.active {
+      opacity: 1;
+    }
+
+    .start-btn {
+      opacity: 0;
+      padding: 12px 24px;
+      font-size: 18px;
+      background-color: #e91e63;
+      color: white;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: opacity 0.5s ease, transform 0.3s ease;
+      transform: scale(0.9);
+    }
+
+    .start-btn.show {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .start-btn:hover {
+      background-color: #d81b60;
+    }
+    
+    #cursor-heart {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  font-size: 12px;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: transform 0.05s ease;
+}
+
+.heart-burst {
+  position: fixed;
+  font-size: 16px;
+  color: #ff4d88;
+  pointer-events: none;
+  animation: burst 0.8s ease-out forwards;
+  z-index: 9999;
+}
+
+@keyframes burst {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--x), var(--y)) scale(0.5);
+  }
+}
+
+
+  </style>
+</head>
+<body>
+<div class="container">
+  <div id="msg1" class="message">Hey Adity…💕</div>
+  <div id="msg2" class="message">I’ve wanted to say something to you for a long time.</div>
+  <div id="msg3" class="message">But I kept holding back… not because I didn’t want to,<br>but because I was afraid of ruining what we have.</div>
+  <div id="msg4" class="message">Still, some feelings grow stronger the longer you hide them.</div>
+  <div id="msg5" class="message">So here I am…<br>Finally ready to say it all. Are you ready?</div>
+  <button id="startBtn" class="start-btn">Yes, Show me 💌</button>
+</div>
+<div id="cursor-heart">❤️</div>
+
+
+
+  <script>
+   const msg1 = document.getElementById('msg1');
+const msg2 = document.getElementById('msg2');
+const msg3 = document.getElementById('msg3');
+const msg4 = document.getElementById('msg4');
+const msg5 = document.getElementById('msg5');
+const startBtn = document.getElementById('startBtn');
+
+setTimeout(() => {
+  msg1.classList.add('active');
+  setTimeout(() => {
+    msg2.classList.add('active');
+    setTimeout(() => {
+      msg3.classList.add('active');
+      setTimeout(() => {
+        msg4.classList.add('active');
+        setTimeout(() => {
+          msg5.classList.add('active');
+          setTimeout(() => {
+            startBtn.classList.add('show');
+          }, 1000);
+        }, 2500);
+      }, 2500);
+    }, 2500);
+  }, 2500);
+}, 800);
+
+const heart = document.getElementById('cursor-heart');
+document.addEventListener('mousemove', (e) => {
+  heart.style.top = `${e.clientY}px`;
+  heart.style.left = `${e.clientX}px`;
+});
+
+  function createHeartBurst(x, y) {
+    for (let i = 0; i < 6; i++) {
+      const heart = document.createElement("div");
+      heart.className = "heart-burst";
+      heart.innerText = "❤️";
+
+      // Random direction
+      const angle = Math.random() * 2 * Math.PI;
+      const radius = 40 + Math.random() * 20;
+
+      const dx = Math.cos(angle) * radius + "px";
+      const dy = Math.sin(angle) * radius + "px";
+
+      heart.style.left = `${x}px`;
+      heart.style.top = `${y}px`;
+      heart.style.setProperty("--x", dx);
+      heart.style.setProperty("--y", dy);
+
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 800);
+    }
+  }
+
+  // Mouse click
+  document.addEventListener("click", (e) => {
+    createHeartBurst(e.clientX, e.clientY);
+  });
+
+  // Touch (mobile)
+  document.addEventListener("touchstart", (e) => {
+    const touch = e.touches[0];
+    createHeartBurst(touch.clientX, touch.clientY);
+  });
+
+
+
+startBtn.addEventListener("click", () => {
+  window.location.href = "letter.html"; // Redirect to the letter page
+});
+
+  // Replace with your actual Web App URL from Google Apps Script
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbyUF5awpNDc9yCRh7ySEjEZFFNnODFg2rHePbytkoR47uznHQYrsB777f_zaK0DJWS0/exec';
+
+  // Send visit data to Google Sheet
+  fetch(scriptURL, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      event: 'visit',
+      timestamp: new Date().toISOString()
+    })
+  });
+
+
+  </script>
+</body>
+</html>

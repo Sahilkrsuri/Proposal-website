@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>I Love You Adity 💌</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: #ffecec;
+      font-family: 'Poppins', sans-serif;
+      overflow: hidden;
+      position: relative;
+      min-height: 100vh;
+    }
+
+    .image {
+      position: absolute;
+      width: 140px;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+
+    .image:hover {
+      transform: scale(1.05);
+      z-index: 2;
+    }
+
+    .center-message {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      max-width: 80%;
+      z-index: 10;
+    }
+
+    .center-message h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 38px;
+      color: #000000;
+      text-shadow: 0 0 8px rgba(255, 0, 102, 0.4);
+      animation: pulse 2.5s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.9; transform: scale(1.03); }
+    }
+
+    /* Floating hearts background */
+    .hearts {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .hearts span {
+      position: absolute;
+      display: block;
+      color: #ff80aa;
+      font-size: 18px;
+      animation: float 8s linear infinite;
+      opacity: 0.7;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) scale(1);
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-10vh) scale(1.5);
+        opacity: 0;
+      }
+    }
+
+    /* Modal */
+    .modal {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0,0,0,0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+      display: none;
+    }
+
+    .modal img {
+      max-width: 90%;
+      max-height: 90vh;
+      border-radius: 10px;
+    }
+
+    .modal.active {
+      display: flex;
+    }
+
+    @media screen and (max-width: 768px) {
+      .image {
+        width: 100px;
+      }
+      .center-message h1 {
+        font-size: 28px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating hearts -->
+  <div class="hearts" id="hearts"></div>
+
+  <!-- Central message -->
+  <div class="center-message">
+   <h1> Mujhe viswas nahi ho rha hai tumne haan bol diya hai</h1>
+<p>
+  mujhe nahi pata ki mai kaise react karunga 
+  I can't even describe what I'm feeling right now...   
+</p>
+
+<p>
+  Thank you for trusting me with your heart.  
+  I promise to protect it, always.  
+</p>
+
+<h2>From this moment on, it's not just me... it's "us". 💑</h2>
+
+  </div>
+
+  <!-- Images scattered -->
+  <img src="./assets/img11.jpg" class="image" style="top: 10%; left: 5%; transform: rotate(-8deg);" />
+  <img src="./assets/img2.jpg" class="image" style="top: 15%; left: 75%; transform: rotate(5deg);" />
+  <img src="./assets/img3.jpg" class="image" style="top: 30%; left: 10%; transform: rotate(-4deg);" />
+  <img src="./assets/img13.jpg" class="image" style="top: 40%; left: 75%; transform: rotate(-5deg);" />
+  <img src="./assets/img5.jpg" class="image" style="top: 70%; left: 80%; transform: rotate(-6deg);" />
+  <img src="./assets/img6.jpg" class="image" style="top: 75%; left: 10%; transform: rotate(4deg);" />
+  <img src="./assets/img7.jpg" class="image" style="top: 55%; left: 85%; transform: rotate(-10deg);" />
+  <img src="./assets/img8.jpg" class="image" style="top: 60%; left: 5%; transform: rotate(8deg);" />
+  <img src="./assets/img9.jpg" class="image" style="top: 5%; left: 45%; transform: rotate(6deg);" />
+
+  <!-- Modal -->
+  <div class="modal" id="modal">
+    <img id="modalImg" src="" alt="Full View">
+  </div>
+
+  <script>
+    // Floating Hearts
+    const heartsContainer = document.getElementById("hearts");
+    for (let i = 0; i < 30; i++) {
+      const heart = document.createElement("span");
+      heart.innerText = "❤️";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = 6 + Math.random() * 5 + "s";
+      heart.style.fontSize = 14 + Math.random() * 12 + "px";
+      heart.style.top = Math.random() * 100 + "vh";
+      heartsContainer.appendChild(heart);
+    }
+
+    // Fullscreen Modal
+    const modal = document.getElementById("modal");
+    const modalImg = document.getElementById("modalImg");
+    const images = document.querySelectorAll(".image");
+
+    images.forEach((img) => {
+      img.addEventListener("click", () => {
+        modalImg.src = img.src;
+        modal.classList.add("active");
+      });
+    });
+
+    modal.addEventListener("click", () => {
+      modal.classList.remove("active");
+    });
+  </script>
+
+</body>
+</html>
